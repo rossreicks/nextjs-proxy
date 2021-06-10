@@ -1,9 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { getUsers } from '../../../services/getUsers'
+import { getUser } from '../../../services/getUser';
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const data = await getUsers();
+    const { id } = _req.query;
+
+    const data = await getUser(id);
 
     res.status(200).json(data)
   } catch (err) {
